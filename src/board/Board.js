@@ -10,21 +10,6 @@ function Board() {
 
 const [boards, setBoards] = useState(getBoards);
 
-
-  // 아무리해도 객체에 붙이는것밖에 생각이안남....
-  //따로 상태를 isChecked로 뺄수 있는지?
-
-
-// function checkboxClick(id){
-//   const copyBoards= [...boards, {isChecked:false}]; //이것은 따로 배열에 객체를 집어넣는것?
-//   const filteredBoard = boards.map((board) => (board.id === id?
-//     copyBoards.isChecked = true : copyBoards.isChecked= false
-//   ));
-//   setBoards(filteredBoard);
-
-// }
-
-
 function checkboxClick(id){
   const filteredBoard = boards.map((board) => (board.id === id?
     {...board, isChecked: !board.isChecked}: board 
