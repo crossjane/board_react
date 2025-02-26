@@ -1,13 +1,13 @@
 
-import './App.css';
+import '../App.css';
 import {useState} from 'react';
-import {Routes, Route, BrowserRouter} from 'react-router-dom';
-import BoardDetail from './board/BoardDetail';
-import { getBoards } from './api/boardApi';
+import {Routes, Route, BrowserRouter, useNavigate} from 'react-router-dom';
+import BoardDetail from './BoardDetail';
+import { getBoards } from '../api/boardApi';
 
 function Board() {
 
-
+const navigate = useNavigate();
 const [boards, setBoards] = useState(getBoards);
 
 function checkboxClick(id){
@@ -26,11 +26,15 @@ function checkboxDelete(){
 }
 
 function write(){
+ navigate(`/boards/Write`);
+}
+
+function clickBoardDetail(id){
+  navigate(`/boards/${id}`);
 
 }
 
 
-function Board() {
   return (
     <div className='board'>
     <header>
@@ -51,7 +55,7 @@ function Board() {
       </thead>
       <tbody>
       {boards.map((board)=>(
-        <tr key={board.id}>
+        <tr key={board.id} onClick={()=>clickBoardDetail(board.id)}>
           <td>
           <input 
             type='checkbox'
@@ -72,6 +76,4 @@ function Board() {
   </div>
   );
 }
-};
-
 export default Board;

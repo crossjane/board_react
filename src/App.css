@@ -64,3 +64,22 @@ header p{
 .btns button{
   height:30px;
 }
+
+.board-detail{
+  width: 800px;
+  height: 600px;
+  background-color: rgb(247, 247, 247);
+  border-radius: 15px;
+  border-color: gray;
+  box-shadow: 0 0 10px rgba(82, 82, 82, 0.3);
+  
+
+}
+
+.board-title{
+  padding: 30px;
+}
+
+.board-contents{
+  padding: 30px;
+}
