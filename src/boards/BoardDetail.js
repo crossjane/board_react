@@ -9,7 +9,7 @@ function BoardDetail(){
 
 const [boards, setBoards] = useState(getBoards);
 
-//왜 객체로 가져오지? 그냥 문법인가?
+//비구조화할당
 const {id} = useParams();
 const params = useParams();
 console.log("params :", params);
@@ -21,7 +21,7 @@ return (
 <>
 
 
-<div className ='baord-detail'>
+<div className ='board-detail'>
 
     {boards.map((board)=>(
         board.id === Number(id)?
