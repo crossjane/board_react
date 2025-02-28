@@ -3,10 +3,10 @@
 import '../App.css';
 import {useState} from 'react';
 import { getBoards } from '../api/boardApi';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function BoardDetail(){
-
+ const navigate = useNavigate();
 const [boards, setBoards] = useState(getBoards);
 
 //비구조화할당
@@ -14,6 +14,11 @@ const {id} = useParams();
 const params = useParams();
 console.log("params :", params);
 console.log("id :", id)
+
+function editSave(){
+    navigate(`/boards/${id}/Write`);
+
+}
 
 
 return (
@@ -39,8 +44,10 @@ return (
 
 
 
-</div>
+<button onClick={editSave}>수정</button>
+<button onClick={()=>navigate("/boards")}>목록으로 가기</button>
 
+</div>
 
 
 

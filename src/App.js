@@ -15,6 +15,7 @@ function App(){
           <Route path="/boards" element={<Board />} />
           <Route path="/boards/:id" element={<BoardDetail />} />
           <Route path="/boards/write" element={<Write />} />
+          <Route path="/boards/:id/write" element={<Write />} />
           <Route path="*" element={<Board />} />
         </Routes>
     </BrowserRouter>
