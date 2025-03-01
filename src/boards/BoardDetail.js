@@ -41,11 +41,19 @@ return (
 
     ))}
 
-
-
+<div className='comment'>
+    <input
+        type="text"
+        placeholder='댓글을 입력해주세요.'
+        />
+    <button>등록</button>
+<br/>
+</div>
 
 <button onClick={editSave}>수정</button>
 <button onClick={()=>navigate("/boards")}>목록으로 가기</button>
+
+
 
 </div>
 
