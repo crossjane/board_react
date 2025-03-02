@@ -6,8 +6,9 @@ import { getBoards } from '../api/boardApi';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function BoardDetail(){
- const navigate = useNavigate();
+const navigate = useNavigate();
 const [boards, setBoards] = useState(getBoards);
+const [comment, setComment] = useState("");
 
 //비구조화할당
 const {id} = useParams();
@@ -20,6 +21,14 @@ function editSave(){
 
 }
 
+function changeComment(e){
+ setComment(e.target.value);
+}
+
+function commentSave(){
+   const findIndex = getBoards.findIndex((board)=>board.id === id);
+   getBoards.push(comment);
+}
 
 return (
 
@@ -45,8 +54,10 @@ return (
     <input
         type="text"
         placeholder='댓글을 입력해주세요.'
+        onChange={changeComment}
+        value={comment}
         />
-    <button>등록</button>
+    <button onClick={commentSave}>등록</button>
 <br/>
 </div>
 
