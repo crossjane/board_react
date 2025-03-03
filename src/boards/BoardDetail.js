@@ -25,10 +25,33 @@ function changeComment(e){
  setComment(e.target.value);
 }
 
+// function commentSave(){
+//    const findIndex = getBoards.findIndex((board)=>board.id === Number(id));
+
+//    const newComment = {content:comment, nickname:"하하호호호"};
+//     if(!comment){
+//     getBoards[findIndex].comment.push(newComment);
+//         }else{
+//             getBoards[findIndex].comment.push([newComment]);
+//         }
+// setComment("");
+   
+// }
+
+//배열을 만들어서 만약 이미 comment 가 있으면 그냥 newComment{} 내용을 push , 만약 없으면? 새로운 배열에 newComment{} 내용 push
+
 function commentSave(){
-   const findIndex = getBoards.findIndex((board)=>board.id === id);
-   getBoards.push(comment);
-}
+    const findIndex = getBoards.findIndex((board)=>board.id === Number(id));
+ 
+    const newComment = {content:comment, nickname:"하하호호호"};
+     if(comment.length >= 1){
+     getBoards[findIndex].comment.push(newComment);
+         }else{
+             getBoards[findIndex].comment.push([newComment]);
+         }
+ setComment("");
+    
+ }
 
 return (
 
