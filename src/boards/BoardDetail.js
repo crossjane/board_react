@@ -95,10 +95,16 @@ return (
 
 {/* getBoards에 저장된 댓글들이 불러져와야함->1. getBoards에서 comment 가 있는 댓글들을 모두 불러옴.
  comment 가 있다면? 모두불러움  모가 잘못된건지모르겠음음 */}
+ {/* 반복되어서 들어가게 어떻게 하지 */}
 
 <div className='comment'>
     <div className='comment-view'>
-        { selectedBoard.comment? selectedBoard.map((comment)=>
+        <div  className = 'comment-info' style={{ marginBottom:'10px' }}>
+            <div style={{ marginRight:'10px', color:'rgb(72, 72, 72)'}}><strong>글쓴이이</strong></div>
+            <div style={{ fontSize:'13px'}}>2025-03-05</div>
+        </div>
+        <div>댓글입니다.</div>
+        {/* { selectedBoard.comment? selectedBoard.map((comment)=>
         <>
             <div>{comment.content}</div>
             <div>{comment.writer}</div>
@@ -106,21 +112,26 @@ return (
         )
         :
             null
-        }
+        } */}
     </div>
-    <input
-        type="text"
-        placeholder='댓글을 입력해주세요.'
-        onChange={changeComment}
-        value={comment}
-        />
-    <button onClick={commentSave}>등록</button>
+    <div className='comment-input'>
+        <input
+            type="text"
+            placeholder='댓글을 입력해주세요.'
+            onChange={changeComment}
+            value={comment}
+            />
+        <button onClick={commentSave}>등록</button>
+    </div>
+   
 <br/>
+
 </div>
 
-<button onClick={editSave}>수정</button>
-<button onClick={()=>navigate("/boards")}>목록으로 가기</button>
-
+<div className ='btns'>
+    <button onClick={editSave}>수정</button>
+    <button onClick={()=>navigate("/boards")}>목록으로 가기</button>
+</div>
 
 
 </div>
