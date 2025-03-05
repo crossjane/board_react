@@ -1,13 +1,13 @@
 
 
 import '../App.css';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { getBoards } from '../api/boardApi';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function BoardDetail(){
 const navigate = useNavigate();
-const [boards, setBoards] = useState(getBoards);
+const [board, setBoard] = useState();
 const [comment, setComment] = useState("");
 const [selectedBoard, setSelectedBoard] = useState();
 
@@ -57,17 +57,26 @@ function changeComment(e){
 
 // return (
 
+useEffect(()=>{
+   const findIndexBoard = getBoards.findIndex((board)=>board.id === Number(id));
+
+   setBoard(getBoards[findIndexBoard]);
+
+},[]);
+
 
 function commentSave(){
-    const findIndex = getBoards.findIndex((board)=>board.id === Number(id));
+   
  
     const newComment = {content:comment, nickname:"하하호호호"};
-     if(!getBoards[findIndex].comment){
-            getBoards[findIndex].comment =[];
+     if(!board.comment){
+        board.comment =[];
          }
-         
-     const updatedBoards = getBoards[findIndex].comment.push(newComment);
-     setSelectedBoard(updatedBoards);
+         board.comment.push(newComment);
+       const copyBoard = {...board};
+       const copyComment = [...board.comment];
+       copyBoard.comment = copyComment;
+    setBoard(copyBoard);     
     setComment("");
     
  }
@@ -79,18 +88,17 @@ return (
 
 <div className ='board-detail'>
 
-    {boards.map((board)=>(
-        board.id === Number(id)?
+    {board ?
             <>
-            <div key={board.id}>
+            
                 <div className='board-title'>{board.title}</div>
                 <div className='board-contents'>{board.description}</div>
-            </div>
+          
             </>
     : 
            null
 
-    ))}
+    }
 
 
 {/* getBoards에 저장된 댓글들이 불러져와야함->1. getBoards에서 comment 가 있는 댓글들을 모두 불러옴.
@@ -99,20 +107,19 @@ return (
 
 <div className='comment'>
     <div className='comment-view'>
-        <div  className = 'comment-info' style={{ marginBottom:'10px' }}>
-            <div style={{ marginRight:'10px', color:'rgb(72, 72, 72)'}}><strong>글쓴이이</strong></div>
-            <div style={{ fontSize:'13px'}}>2025-03-05</div>
-        </div>
-        <div>댓글입니다.</div>
-        {/* { selectedBoard.comment? selectedBoard.map((comment)=>
-        <>
+        
+        { board && board.comment && board.comment.length > 0 ? board.comment.map((comment)=>
+        <div style={{marginTop: 30}}>
+            <div  className = 'comment-info' style={{ marginBottom:'10px' }}>
+                <div style={{ marginRight:'10px', color:'rgb(72, 72, 72)'}}><strong>{comment.writer}</strong></div>
+                <div style={{ fontSize:'13px'}}>2025-03-05</div>
+            </div>
             <div>{comment.content}</div>
-            <div>{comment.writer}</div>
-        </>
+        </div>
         )
         :
             null
-        } */}
+        }
     </div>
     <div className='comment-input'>
         <input
