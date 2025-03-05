@@ -26,36 +26,6 @@ function changeComment(e){
  setComment(e.target.value);
 }
 
-// function commentSave(){
-//    const findIndex = getBoards.findIndex((board)=>board.id === Number(id));
-
-//    const newComment = {content:comment, nickname:"하하호호호"};
-//     if(!comment){
-//     getBoards[findIndex].comment.push(newComment);
-//         }else{
-//             getBoards[findIndex].comment.push([newComment]);
-//         }
-// setComment("");
-   
-// }
-
-//배열을 만들어서 만약 이미 comment 가 있으면 그냥 newComment{} 내용을 push , 만약 없으면? 새로운 배열에 newComment{} 내용 push
-//안되는이유??
-
-// function commentSave(){
-//     const findIndex = getBoards.findIndex((board)=>board.id === Number(id));
- 
-//     const newComment = {content:comment, nickname:"하하호호호"};
-//      if(!comment && null){
-//             getBoards[findIndex].comment =[];
-//          }
-         
-//      getBoards[findIndex].comment.push(newComment);
-//  setComment("");
-    
-//  }
-
-// return (
 
 useEffect(()=>{
    const findIndexBoard = getBoards.findIndex((board)=>board.id === Number(id));
@@ -68,7 +38,7 @@ useEffect(()=>{
 function commentSave(){
    
  
-    const newComment = {content:comment, nickname:"하하호호호"};
+    const newComment = {id: Date.now(), content:comment, nickname:"하하호호호"};
      if(!board.comment){
         board.comment =[];
          }
@@ -79,6 +49,20 @@ function commentSave(){
     setBoard(copyBoard);     
     setComment("");
     
+ }
+
+ function commentEdit(){
+    
+
+ }
+
+ function commentDelete(id){
+    const filteredComment = board.comment.filter((comment)=>comment.id !== id);
+
+console.log(filteredComment)
+
+    setBoard(filteredComment);
+
  }
 
 return (
@@ -114,7 +98,10 @@ return (
                 <div style={{ marginRight:'10px', color:'rgb(72, 72, 72)'}}><strong>{comment.writer}</strong></div>
                 <div style={{ fontSize:'13px'}}>2025-03-05</div>
             </div>
+    
             <div>{comment.content}</div>
+            <button onClick={commentEdit}>수정</button>
+            <button onClick={()=>commentDelete(comment.id)}>삭제</button>
         </div>
         )
         :
