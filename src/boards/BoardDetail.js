@@ -57,11 +57,19 @@ function commentSave(){
  }
 
  function commentDelete(id){
-    const filteredComment = board.comment.filter((comment)=>comment.id !== id);
-
-console.log(filteredComment)
-
+    if(board.comment){
+    const filteredComment = board.comment.filter((comment)=>Number(comment.id) !== Number(id));
+    console.log("boardComment:",board.comment);
+    console.log(id);
+    console.log("filteredCOmment:",filteredComment)
     setBoard(filteredComment);
+    } else{
+        
+    }
+
+
+
+   
 
  }
 
