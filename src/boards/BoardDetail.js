@@ -9,7 +9,6 @@ function BoardDetail(){
 const navigate = useNavigate();
 const [board, setBoard] = useState();
 const [comment, setComment] = useState("");
-const [selectedBoard, setSelectedBoard] = useState();
 
 //비구조화할당
 const {id} = useParams();
@@ -56,17 +55,21 @@ function commentSave(){
 
  }
 
+ 
+
  function commentDelete(id){
     if(board.comment){
     const filteredComment = board.comment.filter((comment)=>Number(comment.id) !== Number(id));
     console.log("boardComment:",board.comment);
     console.log(id);
-    console.log("filteredCOmment:",filteredComment)
-    setBoard(filteredComment);
-    } else{
-        
-    }
+    console.log("filteredCOmment:",filteredComment);
 
+    const copyBoard={...board};
+    const copyComment=[...board.comment];
+    copyBoard.comment = filteredComment;
+
+    setBoard(copyBoard);
+    } 
 
 
    
