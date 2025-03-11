@@ -1,4 +1,4 @@
-export const getBoards = [
+export let getBoards = [
     {id: 1, title: "안녕하세요. 게시판 입니다.", description: "내용", createDate: "2025-02-05", writer: "운영자"},
     {id: 2, title: "공지사항입니다 여러분.", description: "내용1", createDate: "2025-02-05", writer: "운영자2"},
     {id: 3, title: "제목3", description: "내용2", createDate: "2025-02-05", writer: "운영자3", comment: [{id: 1, content:"1번 댓글입니다." , writer:"하하호호"}]},
@@ -11,3 +11,7 @@ export const getBoards = [
     {id: 10, title: "제목3", description: "내용2", createDate: "2025-02-05", writer: "운영자10"}
   ];
 
+
+  export function changeBoards(boards) {
+    getBoards = boards;
+  }

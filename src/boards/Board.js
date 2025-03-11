@@ -3,7 +3,7 @@ import '../App.css';
 import {useState} from 'react';
 import {Routes, Route, BrowserRouter, useNavigate} from 'react-router-dom';
 import BoardDetail from './BoardDetail';
-import { getBoards } from '../api/boardApi';
+import { changeBoards, getBoards } from '../api/boardApi';
 
 function Board() {
 
@@ -21,6 +21,7 @@ function checkboxClick(id){
 function checkboxDelete(){
   const copyBoards = [...boards];
   const filteredBoards = copyBoards.filter((board)=>!board.isChecked);
+  changeBoards(filteredBoards);
   setBoards(filteredBoards);
 
 }
@@ -55,7 +56,7 @@ function clickBoardDetail(id){
       </thead>
       <tbody>
       {boards.map((board)=>(
-        <tr key={board.id} onClick={()=>clickBoardDetail(board.id)}>
+        <tr key={board.id} >
           <td>
           <input 
             type='checkbox'
@@ -63,9 +64,9 @@ function clickBoardDetail(id){
             onChange={()=>checkboxClick(board.id)}
           />
             </td>
-          <td>{board.title}</td>
-          <td>{board.createDate}</td>
-          <td>{board.writer}</td>
+          <td onClick={()=>clickBoardDetail(board.id)}>{board.title}</td>
+          <td onClick={()=>clickBoardDetail(board.id)}>{board.createDate}</td>
+          <td onClick={()=>clickBoardDetail(board.id)}>{board.writer}</td>
         </tr>
       ))}
     
